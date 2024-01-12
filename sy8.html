@@ -1,16 +1,19 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>谭文鑫的个人主页</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .header { text-align: center; }
-        .section { margin: 20px; }
-        .photo { max-width: 300px; }
-       .music-player {
-        position: fixed; 
-        top: 10px;       
-        right: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ADD8E6; /* 设置背景颜色为淡蓝色 */
+        }
+        .header {
+            text-align: center;
+        }
+        .section {
+            margin: 20px;
+        }
+        .photo {
+            max-width: 300px;
         }
     </style>
 </head>
@@ -34,10 +37,38 @@
 </div>
 
 <div class="section">
+    <h2>我喜欢的音乐</h2>
+    <audio id="musicPlayer" controls>
+        <source src="陶喆-飞机场的10_30.mp3" type="audio/mpeg">
+    </audio>
+    <br>
+    <button onclick="playPrevious()">上一首</button>
+    <button onclick="playNext()">下一首</button>
+</div>
+
+<div class="section">
     <h2>联系方式</h2>
     <p>1483805393@qq.com</p>
 </div>
 
+<script>
+    var songs = ["陶喆-飞机场的10_30.mp3", "此刻你心里想起谁.mp3", "江南.mp3","可爱女人.mp3"]; // 歌曲列表
+    var currentSong = 0;
+
+    var player = document.getElementById("musicPlayer"); // 获取音乐播放器
+
+    function playNext(){
+        currentSong = (currentSong + 1) % songs.length; // 计算下一首歌的索引
+        player.src = songs[currentSong]; // 更改音乐源
+        player.play(); // 播放音乐
+    }
+
+    function playPrevious(){
+        currentSong = (currentSong - 1 + songs.length) % songs.length; // 计算上一首歌的索引
+        player.src = songs[currentSong]; // 更改音乐源
+        player.play(); // 播放音乐
+    }
+</script>
 
 </body>
 </html>
